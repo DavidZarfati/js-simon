@@ -69,9 +69,14 @@ function generatoreNumeri() {
 function confrontoNumeri() {
     let inputNumerici = document.querySelectorAll('.numeri input[type="number"]');
     let arrayUtente = [];
-    inputNumerici.forEach(input => {
-        arrayUtente.push(parseInt(input.value));
-    });
+    for (let input of inputNumerici) {
+        let valore = input.value.trim();
+        if (valore === '' || isNaN(valore) || !/^\d+$/.test(valore)) {
+            alert("inserisci solo numeri interi validi in tutti i campi.");
+            return;
+        }
+        arrayUtente.push(parseInt(valore));
+    }
     let numeriIndovinati = arrayNumeri.filter(num => arrayUtente.includes(num));
     let punteggio = numeriIndovinati.length;
     alert("Hai indovinato " + punteggio + " numeri su 5!\nNumeri indovinati: " + numeriIndovinati.join(", "));
