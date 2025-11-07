@@ -72,7 +72,7 @@ function confrontoNumeri() {
     for (let input of inputNumerici) {
         let valore = input.value.trim();
         if (valore === '' || isNaN(valore) || !/^\d+$/.test(valore)) {
-            alert("inserisci solo numeri interi validi in tutti i campi.");
+            alert("inserisci solo numeri interi positivi validi in tutti i campi.");
             return;
         }
         arrayUtente.push(parseInt(valore));
