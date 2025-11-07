@@ -15,7 +15,8 @@ let bottoneSubmit = document.querySelector(".bg-secondary")
 // console.log(numeroUno, numeroDue, numeroTre, numeroQuattro, numeroCinque) Debug
 
 bottoneStart.addEventListener("click", generatoreNumeri)
-// bottoneSubmit.addEventListener("click", confrontoNumeri)
+bottoneSubmit.addEventListener("click", confrontoNumeri)
+
 bottoneSubmit.disabled = true
 
 function generatoreNumeri() {
@@ -36,7 +37,7 @@ function generatoreNumeri() {
     let inputNumerici = document.querySelectorAll('.numeri input[type="number"]');
     inputNumerici.forEach(input => input.disabled = true);
     numeriGenerati = 0
-    arrayNumeri = []
+    // arrayNumeri = []
     setTimeout(() => {
         numeroUno.innerHTML = "";
         numeroDue.innerHTML = "";
@@ -46,8 +47,21 @@ function generatoreNumeri() {
         inputNumerici.forEach(input => input.disabled = false);
         // bottoneStart.disabled = false
         bottoneSubmit.disabled = false
-    }, 1000);
-
+    }, 30000);
+    return arrayNumeri;
 }
 
-// function confrontoNumeri()
+function confrontoNumeri() {
+    let inputNumerici = document.querySelectorAll('.numeri input[type="number"]');
+    let arrayUtente = [];
+    inputNumerici.forEach(input => {
+        arrayUtente.push(parseInt(input.value));
+    });
+    let numeriIndovinati = arrayNumeri.filter(num => arrayUtente.includes(num));
+    let punteggio = numeriIndovinati.length;
+    alert("Hai indovinato " + punteggio + " numeri su 5!\nNumeri indovinati: " + numeriIndovinati.join(", "));
+
+    bottoneStart.disabled = false;
+    bottoneSubmit.disabled = true;
+    arrayNumeri.length = 0;
+}
